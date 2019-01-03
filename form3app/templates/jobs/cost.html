@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Django form3</title>
+<style>
+.table{border=2px solid black}
+</style>
+</head>
+<body>
+
+
+<form action="{% url 'form3app:cost' %}" method ="post"> {% csrf_token %}
+	<p><label for="date">Date:</label><input type="text" name="date" value={% now "Y-m-d" %} /></p>
+	<p><label for="cost">Cost:</label><input type="text" name="cost" value="0" id="cost" /></p>
+	<input type="submit" value="Submit" />
+<form>
+
+
+
+<p> {{ text }} </p>
+
+<br><hr>
+
+{% block body %}
+   
+
+        {% csrf_token %}        
+        <table class="table"  style="border:2px solid black">
+            <tr>
+                <th style="border:2px solid black">Cost</th>
+                <th style="border:2px solid black">Date</th>
+                
+            </tr>
+            {% for e in posts %}
+                <tr>
+                    <td style="border:2px solid black">{{ e.cost }}</td>
+                    <td style="border:2px solid black">{{ e.date }}</td>
+                    
+                </tr>
+            {% endfor %}
+        </table>
+             
+{% endblock %}
+
+</body>
+</html>
